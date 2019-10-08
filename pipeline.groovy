@@ -9,10 +9,8 @@ pipeline {
       steps {
         script {
           def workspace = "/var/lib/jenkins/workspace/Ansible_Test_WithGit"
-          echo pwd
-          echo ls
           echo "Обновление системы"
-          sh "SystemUpdate.yml"
+          sh "/var/lib/jenkins/workspace/Ansible_Test_WithGit/SystemUpdate.yml"
         }
       }
     }
