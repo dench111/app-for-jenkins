@@ -10,7 +10,7 @@ pipeline {
         script {
           def workspace = "/var/lib/jenkins/workspace/Ansible_Test_WithGit"
           echo "Обновление системы"
-          sh "ansible-playbook" + workspace + "SystemUpdate.yml"
+          sh "ansible-playbook" + "SystemUpdate.yml"
         }
       }
     }
