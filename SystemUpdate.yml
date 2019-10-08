@@ -1,0 +1,8 @@
+---
+- name: SystemUpdate
+  hosts: host1
+  
+  tasks:
+  - name: UpdateSystem
+    shell: yum update
+    register: Update_result
