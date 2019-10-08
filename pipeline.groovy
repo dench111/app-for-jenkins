@@ -5,7 +5,7 @@ pipeline {
     }
   }
   stages {
-    stage('Update system") {
+    stage("Update system") {
       steps {
         script {
           def workspace = "/var/lib/jenkins/workspace/Ansible_Test_WithGit"
