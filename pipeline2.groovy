@@ -10,6 +10,7 @@ pipeline {
         script {
           def workspace = "/var/lib/jenkins/workspace/Ansible_Test_WithGit"
           echo "Проверка состояния сервера ELK"
+          sh "sudo apt install python-pip"
           sh "pip install termcolor"
           sh "chmod ugo+rwx /var/lib/jenkins/workspace/Ansible_Test_WithGit/monitoring_script.py"
           sh "/var/lib/jenkins/workspace/Ansible_Test_WithGit/monitoring_script.py"
