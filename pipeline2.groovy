@@ -10,7 +10,7 @@ pipeline {
         script {
           def workspace = "/var/lib/jenkins/workspace/Ansible_Test_WithGit"
           echo "Проверка состояния сервера ELK"
-          sh "pwd | ls -la | python --version| chmod ugo+rwx /var/lib/jenkins/workspace/Ansible_Test_WithGit/monitoring_script.py"
+          sh "chmod ugo+rwx /var/lib/jenkins/workspace/Ansible_Test_WithGit/monitoring_script.py"
           sh "/var/lib/jenkins/workspace/Ansible_Test_WithGit/monitoring_script.py"
         }
       }
