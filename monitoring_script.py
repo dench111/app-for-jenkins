@@ -38,7 +38,7 @@ def checkResponseStatus(Resp, diskSpace):
         markers['unassignedMarker'] = 1
     if int(diskSpace) > 85:
         markers['diskSpaceMarker'] = 1
-    print('{blue}markers{endcolor}'.format(blue='\033[96m', endcolor='\033[0m'))
+    print('{blue}заебался{endcolor}'.format(blue='\033[96m', endcolor='\033[0m'))
 
  
 def markerCheck():
