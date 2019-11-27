@@ -38,7 +38,7 @@ def checkResponseStatus(Resp, diskSpace):
         markers['unassignedMarker'] = 1
     if int(diskSpace) > 85:
         markers['diskSpaceMarker'] = 1
-    out = (os.popen(echo -e "\e[31mКрасный Текст\e[0m").read())
+    out = (os.popen('echo -e "\e[31mКрасный Текст\e[0m"').read())
     print(out)
 
  
