@@ -12,7 +12,7 @@ pipeline {
           echo "Проверка состояния сервера ELK"
           sh "chmod ugo+rwx /var/lib/jenkins/workspace/Ansible_Test_WithGit/monitoring_script.py"
           sh "/var/lib/jenkins/workspace/Ansible_Test_WithGit/monitoring_script.py"
-          sh "rm -rf /var/lib/jenkins/workspace/Ansible_Test_WithGit/"
+          sh "rm -rf $workspace"
         }
       }
     }
