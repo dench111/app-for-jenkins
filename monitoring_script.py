@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from termcolor import colored
 import json, sys, os, pprint, re, subprocess, io, platform
 # *********Общий статус кластера********
 elkStatus = 'curl -XGET "http://192.168.0.104:9200/_cluster/health?pretty"'
 elkResponse = (os.popen(elkStatus).read())
 elkRespAsDict = json.loads(elkResponse)
-print(elkResponse)
+print(colored(elkResponse), 'green')
 # ********Проверка свободного пространства на дисках********
 diskSpaceStatus = 'curl -XGET "http://192.168.0.104:9200/_cat/allocation?format=json"'
 diskSpaceResponse = (os.popen(diskSpaceStatus).read())
