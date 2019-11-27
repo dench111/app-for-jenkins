@@ -38,7 +38,7 @@ def checkResponseStatus(Resp, diskSpace):
         markers['unassignedMarker'] = 1
     if int(diskSpace) > 85:
         markers['diskSpaceMarker'] = 1
-    print(""\x1b[32mПИЗДЕЦ\x1b[0m")
+    print("\x1b[32mПИЗДЕЦ\x1b[0m")
 
  
 def markerCheck():
