@@ -10,6 +10,7 @@ pipeline {
         script {
           def workspace = "/var/lib/jenkins/workspace/Ansible_Test_WithGit"
           echo "Обновление системы"
+          sh "chmod ugo+rwx /var/lib/jenkins/workspace/Ansible_Test_WithGit/SystemUpdate.yml"
           sh "/var/lib/jenkins/workspace/Ansible_Test_WithGit/SystemUpdate.yml -v"
         }
       }
