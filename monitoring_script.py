@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from termcolor import colored
 import json, sys, os, pprint, re, subprocess, io, platform
 # *********Общий статус кластера********
 elkStatus = 'curl -XGET "http://192.168.0.104:9200/_cluster/health?pretty"'
 elkResponse = (os.popen(elkStatus).read())
 elkRespAsDict = json.loads(elkResponse)
-print(colored(elkResponse), 'green')
+print(elkResponse)
 # ********Проверка свободного пространства на дисках********
 diskSpaceStatus = 'curl -XGET "http://192.168.0.104:9200/_cat/allocation?format=json"'
 diskSpaceResponse = (os.popen(diskSpaceStatus).read())
@@ -39,7 +38,7 @@ def checkResponseStatus(Resp, diskSpace):
         markers['unassignedMarker'] = 1
     if int(diskSpace) > 85:
         markers['diskSpaceMarker'] = 1
-    print(markers)
+    print('{blue}markers{endcolor}'.format(blue='\033[96m', endcolor='\033[0m')
 
  
 def markerCheck():
