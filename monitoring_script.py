@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from colorama import Fore, Back, Style
+colorama.init()
 import json, sys, os, pprint, re, subprocess, io, platform
 # *********Общий статус кластера********
 elkStatus = 'curl -XGET "http://192.168.0.104:9200/_cluster/health?pretty"'
@@ -38,8 +40,7 @@ def checkResponseStatus(Resp, diskSpace):
         markers['unassignedMarker'] = 1
     if int(diskSpace) > 85:
         markers['diskSpaceMarker'] = 1
-    out = (os.popen('echo -e "\e[31mКрасный Текст\e[0m"').read())
-    print(out)
+    print(Fore.RED + markers)
 
  
 def markerCheck():
