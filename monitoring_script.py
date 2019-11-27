@@ -6,6 +6,7 @@ import json, sys, os, pprint, re, subprocess, io, platform
 elkStatus = 'curl -XGET "http://192.168.0.104:9200/_cluster/health?pretty"'
 elkResponse = (os.popen(elkStatus).read())
 elkRespAsDict = json.loads(elkResponse)
+print(elkResponse)
 # ********Проверка свободного пространства на дисках********
 diskSpaceStatus = 'curl -XGET "http://192.168.0.104:9200/_cat/allocation?format=json"'
 diskSpaceResponse = (os.popen(diskSpaceStatus).read())
@@ -13,7 +14,7 @@ diskSpaceResponseAsDict = json.loads(diskSpaceResponse)
 diskSpaceResponseAsDict = diskSpaceResponseAsDict[0]
 diskSpace = diskSpaceResponseAsDict['disk.percent']
 markers = {'statusMarker': 0, 'unassignedMarker': 0, 'diskSpaceMarker': 0}
-host = 'http://192.168.0.104'
+host = '192.168.0.104'
 pingServer = 'ping -c 3 192.168.0.104'
 uptimeServer = 'uptime'
 ramload = 'free -h'
@@ -37,6 +38,7 @@ def checkResponseStatus(Resp, diskSpace):
         markers['unassignedMarker'] = 1
     if int(diskSpace) > 85:
         markers['diskSpaceMarker'] = 1
+    print(markers)
 
  
 def markerCheck():
