@@ -4,5 +4,5 @@
   
   tasks:
   - name: UpdateSystem
-    shell: yum update
+    shell: sudo apt update
     register: Update_result
