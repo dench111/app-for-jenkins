@@ -20,37 +20,22 @@ ramload = 'free -h'
 cpuload = 'vmstat 5 5'
 
 def out_red(text):
-
     print("\033[31m {}".format(text))
-
 def out_green(text):
-
     print("\033[32m {}".format(text))
-
 def out_blue(text):
-
     print("\033[36m {}".format(text))
-
 def checkServerHealth(param):
-
     result = (os.popen(param).read())
-
     out_blue(result)
-
     out_blue('============================================================================================================================')
 
-def checkResponseStatus(Resp):
-
+def checkResponseStatus(Resp, diskSpace):
     if Resp['status'] != 'green':
-
         markers['statusMarker'] = 1
-
     if Resp['unassigned_shards'] > 0:
-
         markers['unassignedMarker'] = 1
-
     if int(diskSpace) > 85:
-
         markers['diskSpaceMarker'] = 1
 
  
