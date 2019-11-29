@@ -41,8 +41,8 @@ def checkResponseStatus(Resp, diskSpace):
     if int(diskSpace) > 85:
         markers['diskSpaceMarker'] = 1
     print(Fore.RED + markers)
+    
 
- 
 def markerCheck():
     for k, v in markers.items():
         if v == 1:
@@ -50,6 +50,7 @@ def markerCheck():
             if k == 'statusMarker':
                 text = ('Alert!!! Elastic STATUS = ' + elkRespAsDict['status'])
                 out_red(text)
+                subprocess.call("sendemail.sh", shell=True)
             if k == 'unassignedMarker':
                 print('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
                 checkDir = (os.popen('pwd').read())
@@ -62,8 +63,10 @@ def markerCheck():
                 reason = 'curl -XGET "http://192.168.0.104:9200/_cluster/allocation/explain?pretty"'
                 reasonPr = (os.popen(reason).read())
                 print(reasonPr)
+                subprocess.call("sendemail.sh", shell=True)
             if k == 'diskSpaceMarker':
                     print('Alert!!! disk.percent = ' + diskSpaceResponseAsDict['disk.percent'])
+                    subprocess.call("sendemail.sh", shell=True)
         elif v == 0:
             text = (k + ' is OK')
             out_green(text)
