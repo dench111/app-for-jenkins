@@ -46,7 +46,7 @@ def markerCheck():
         if v == 1:
             print('Alert!!!' + k + ' is bad')
             if k == 'statusMarker':
-                statusalert = ('Alert!!! Elastic STATUS = ' + elkRespAsDict['status'])
+                statusalert = ('Alert!!! Elastic STATUS = ' + elkRespAsDict['status'] + "")
                 statusalert = str(statusalert)
                 out_red(text)
                 alerttext = alerttext + statusalert
@@ -62,7 +62,7 @@ def markerCheck():
                 reason = 'curl -XGET "$ElasticURL:9200/_cluster/allocation/explain?pretty"'
                 reasonPr = (os.popen(reason).read())
                 print(reasonPr)
-                uassignedshards = ('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
+                uassignedshards = ('Alert!!! unassigned_shards = ' + elkRespAsDict['unassigned_shards'])
                 uassignedshards = str(uassignedshards)
                 alerttext = alerttext + uassignedshards
             if k == 'diskSpaceMarker':
