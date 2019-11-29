@@ -1,4 +1,4 @@
-alert="Внимание, проблемы с сервером !!!"
+alert=$ELKStatus
 # Будет отображаться "От кого"
 FROM="denisnaprimerov05927@gmail.com"
 # Кому
