@@ -3,19 +3,19 @@
 from __future__ import print_function
 import json, sys, os, pprint, re, subprocess, io, platform
 # *********Общий статус кластера********
-elkStatus = 'curl -XGET "http://192.168.0.104:9200/_cluster/health?pretty"'
+elkStatus = 'curl -XGET "http://192.168.43.226:9200/_cluster/health?pretty"'
 elkResponse = (os.popen(elkStatus).read())
 elkRespAsDict = json.loads(elkResponse)
 print(elkResponse)
 # ********Проверка свободного пространства на дисках********
-diskSpaceStatus = 'curl -XGET "http://192.168.0.104:9200/_cat/allocation?format=json"'
+diskSpaceStatus = 'curl -XGET "http://192.168.43.226:9200/_cat/allocation?format=json"'
 diskSpaceResponse = (os.popen(diskSpaceStatus).read())
 diskSpaceResponseAsDict = json.loads(diskSpaceResponse)
 diskSpaceResponseAsDict = diskSpaceResponseAsDict[0]
 diskSpace = diskSpaceResponseAsDict['disk.percent']
 markers = {'statusMarker': 0, 'unassignedMarker': 0, 'diskSpaceMarker': 0}
-host = '192.168.0.104'
-pingServer = 'ping -c 3 192.168.0.104'
+#host = '192.168.0.104'на будущее сделать выборку url сервера из переменной
+pingServer = 'ping -c 3 192.168.43.226'
 uptimeServer = 'uptime'
 ramload = 'free -h'
 cpuload = 'vmstat 5 5'
@@ -56,9 +56,9 @@ def markerCheck():
                 createFile = (os.popen('touch /var/lib/jenkins/workspace/Elastic_Notifier/testtest.txt').read())
                 viewDir = (os.popen('ls -la').read())
                 print(viewDir)
-                unReq = 'curl -XGET "http://192.168.0.104:9200/_cat/shards?h=index,shard,prirep,state,unassigned.reason" | grep "UNASSIGNED" > /var/lib/jenkins/workspace/Elastic_Notifier/testtest.txt'
+                unReq = 'curl -XGET "http://192.168.43.226:9200/_cat/shards?h=index,shard,prirep,state,unassigned.reason" | grep "UNASSIGNED" > /var/lib/jenkins/workspace/Elastic_Notifier/testtest.txt'
                 os.system(unReq)
-                reason = 'curl -XGET "http://192.168.0.104:9200/_cluster/allocation/explain?pretty"'
+                reason = 'curl -XGET "http://192.168.43.226:9200/_cluster/allocation/explain?pretty"'
                 reasonPr = (os.popen(reason).read())
                 print(reasonPr)
                 subprocess.call("sendemail.sh", shell=True)
