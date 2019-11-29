@@ -45,10 +45,12 @@ def markerCheck():
     for k, v in markers.items():
         if v == 1:
             print('Alert!!!' + k + ' is bad')
+            text = ''Alert!!!' + k + ' is bad'
+            os.environ["ELKStatus"] = text
             if k == 'statusMarker':
                 text = ('Alert!!! Elastic STATUS = ' + elkRespAsDict['status'])
                 out_red(text)
-                subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
+                os.environ["statusMarker"] = 'Alert!!! Elastic STATUS = ' + elkRespAsDict['status']
             if k == 'unassignedMarker':
                 print('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
                 checkDir = (os.popen('pwd').read())
@@ -61,10 +63,10 @@ def markerCheck():
                 reason = 'curl -XGET "http://192.168.43.226:9200/_cluster/allocation/explain?pretty"'
                 reasonPr = (os.popen(reason).read())
                 print(reasonPr)
-                subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
+                os.environ["unassignedMarker"] = "unassignedMarker"
             if k == 'diskSpaceMarker':
                     print('Alert!!! disk.percent = ' + diskSpaceResponseAsDict['disk.percent'])
-                    subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
+            subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
         elif v == 0:
             text = (k + ' is OK')
             out_green(text)
