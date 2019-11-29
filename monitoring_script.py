@@ -45,8 +45,7 @@ def markerCheck():
     for k, v in markers.items():
         if v == 1:
             print('Alert!!!' + k + ' is bad')
-            text = ''Alert!!!' + k + ' is bad'
-            os.environ["ELKStatus"] = text
+            os.environ["ELKStatus"] = "BAD"
             if k == 'statusMarker':
                 text = ('Alert!!! Elastic STATUS = ' + elkRespAsDict['status'])
                 out_red(text)
