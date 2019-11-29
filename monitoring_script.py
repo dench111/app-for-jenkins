@@ -73,9 +73,8 @@ def markerCheck():
             text = (k + ' is OK')
             out_green(text)
     if len(text) != 0:
-    os.environ["ELKStatus"] = str(text)
-    subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
-
+        os.environ["ELKStatus"] = str(text)
+        subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
 
 checkServerHealth(pingServer)
 checkServerHealth(uptimeServer)
