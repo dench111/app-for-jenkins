@@ -69,12 +69,12 @@ def markerCheck():
                     diskspacealert = ('Alert!!! disk.percent = ' + diskSpaceResponseAsDict['disk.percent'])
                     diskspacealert = str(diskspacealert)
                     text = text + diskspacealert
-            print(text)
-            os.environ["ELKStatus"] = str(text)
-            subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
         elif v == 0:
             text = (k + ' is OK')
             out_green(text)
+    if (len(text) != 0)
+    os.environ["ELKStatus"] = str(text)
+    subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
 
 
 checkServerHealth(pingServer)
