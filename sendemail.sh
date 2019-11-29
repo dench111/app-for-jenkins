@@ -11,7 +11,7 @@ NAME="отчет о состоянии сервера elasticsearch"
 # Скрипт легко адаптируется для любых почтовых серверов
 SMTPSERVER="smtp.gmail.com:587"
 # Логин и пароль от учетной записи gmail.com
-SMTPLOGIN="denisnaprimerov05927@gmail.com"
-SMTPPASS="*****"
+SMTPLOGIN=$SMTPLOGIN
+SMTPPASS=$SMTPPASS
 # Отправляем письмо
 /usr/bin/sendEmail -f $FROM -t $MAILTO -o message-charset=utf-8  -u $NAME -m $alert -s $SMTPSERVER -o tls=yes -xu $SMTPLOGIN -xp $SMTPPASS
