@@ -48,7 +48,6 @@ def markerCheck():
             if k == 'statusMarker':
                 text = ('Alert!!! Elastic STATUS = ' + elkRespAsDict['status'])
                 out_red(text)
-                os.environ["statusMarker"] = 'Alert!!! Elastic STATUS = ' + elkRespAsDict['status']
             if k == 'unassignedMarker':
                 print('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
                 checkDir = (os.popen('pwd').read())
@@ -63,7 +62,7 @@ def markerCheck():
                 print(reasonPr)
                 text = ('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
                 text = str(text)
-                os.environ["unassignedMarker"] = text
+                os.environ["ELKStatus"] = text
             if k == 'diskSpaceMarker':
                     print('Alert!!! disk.percent = ' + diskSpaceResponseAsDict['disk.percent'])
             subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
