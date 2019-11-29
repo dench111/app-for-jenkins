@@ -42,12 +42,14 @@ def checkResponseStatus(Resp, diskSpace):
     
 
 def markerCheck():
+    text[]
     for k, v in markers.items():
         if v == 1:
             print('Alert!!!' + k + ' is bad')
             if k == 'statusMarker':
-                text = ('Alert!!! Elastic STATUS = ' + elkRespAsDict['status'])
+                statusalert = ('Alert!!! Elastic STATUS = ' + elkRespAsDict['status'])
                 out_red(text)
+                text = text + statusalert
             if k == 'unassignedMarker':
                 print('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
                 checkDir = (os.popen('pwd').read())
@@ -60,11 +62,12 @@ def markerCheck():
                 reason = 'curl -XGET "$ElasticURL:9200/_cluster/allocation/explain?pretty"'
                 reasonPr = (os.popen(reason).read())
                 print(reasonPr)
-                text = ('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
-                text = str(text)
-                os.environ["ELKStatus"] = text
+                uassignedshards = ('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
+                text = text + uassignedshards
             if k == 'diskSpaceMarker':
-                    print('Alert!!! disk.percent = ' + diskSpaceResponseAsDict['disk.percent'])
+                    diskspacealert = ('Alert!!! disk.percent = ' + diskSpaceResponseAsDict['disk.percent'])
+                    text = text + diskspacealert
+            os.environ["ELKStatus"] = str(text)
             subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
         elif v == 0:
             text = (k + ' is OK')
