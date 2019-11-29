@@ -62,7 +62,7 @@ def markerCheck():
                 reason = 'curl -XGET "$ElasticURL:9200/_cluster/allocation/explain?pretty"'
                 reasonPr = (os.popen(reason).read())
                 print(reasonPr)
-                uassignedshards = ('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
+                uassignedshards = ('Alert!!! unassigned_shards = ' + elkRespAsDict['unassigned_shards'])
                 uassignedshards = str(uassignedshards)
                 alerttext = alerttext + uassignedshards
             if k == 'diskSpaceMarker':
