@@ -47,7 +47,7 @@ def markerCheck():
         if v == 1:
             print('Alert!!!' + k + ' is bad')
             if k == 'statusMarker':
-                statusalert = ('Alert!!! Elastic STATUS = ' + elkRespAsDict['status'])
+                statusalert = str('Alert!!! Elastic STATUS = ' + elkRespAsDict['status'])
                 out_red(text)
                 text = text + statusalert
             if k == 'unassignedMarker':
@@ -62,10 +62,10 @@ def markerCheck():
                 reason = 'curl -XGET "$ElasticURL:9200/_cluster/allocation/explain?pretty"'
                 reasonPr = (os.popen(reason).read())
                 print(reasonPr)
-                uassignedshards = ('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
+                uassignedshards = str('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
                 text = text + uassignedshards
             if k == 'diskSpaceMarker':
-                    diskspacealert = ('Alert!!! disk.percent = ' + diskSpaceResponseAsDict['disk.percent'])
+                    diskspacealert = str('Alert!!! disk.percent = ' + diskSpaceResponseAsDict['disk.percent'])
                     text = text + diskspacealert
             os.environ["ELKStatus"] = str(text)
             subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
