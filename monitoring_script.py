@@ -42,7 +42,7 @@ def checkResponseStatus(Resp, diskSpace):
     
 
 def markerCheck():
-    text[]
+    text = []
     for k, v in markers.items():
         if v == 1:
             print('Alert!!!' + k + ' is bad')
