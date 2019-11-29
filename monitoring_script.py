@@ -14,8 +14,7 @@ diskSpaceResponseAsDict = json.loads(diskSpaceResponse)
 diskSpaceResponseAsDict = diskSpaceResponseAsDict[0]
 diskSpace = diskSpaceResponseAsDict['disk.percent']
 markers = {'statusMarker': 0, 'unassignedMarker': 0, 'diskSpaceMarker': 0}
-#host = '192.168.0.104'на будущее сделать выборку url сервера из переменной
-pingServer = 'ping -c 3 192.168.43.226'
+pingServer = 'ping -c 2 192.168.0.103'
 uptimeServer = 'uptime'
 ramload = 'free -h'
 cpuload = 'vmstat 5 5'
@@ -70,6 +69,7 @@ def markerCheck():
                     diskspacealert = ('Alert!!! disk.percent = ' + diskSpaceResponseAsDict['disk.percent'])
                     diskspacealert = str(diskspacealert)
                     text = text + diskspacealert
+            print(text)
             os.environ["ELKStatus"] = str(text)
             subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
         elif v == 0:
