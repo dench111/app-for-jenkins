@@ -51,17 +51,17 @@ def markerCheck():
                 out_red(text)
                 alerttext = alerttext + statusalert
             if k == 'unassignedMarker':
-                print('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
+                #print('Alert!!! unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
                 checkDir = (os.popen('pwd').read())
-                print(checkDir)
+                #print(checkDir)
                 createFile = (os.popen('touch /var/lib/jenkins/workspace/Elastic_Notifier/testtest.txt').read())
                 viewDir = (os.popen('ls -la').read())
-                print(viewDir)
+                #print(viewDir)
                 unReq = 'curl -XGET "$ElasticURL:9200/_cat/shards?h=index,shard,prirep,state,unassigned.reason" | grep "UNASSIGNED" > /var/lib/jenkins/workspace/Elastic_Notifier/testtest.txt'
                 os.system(unReq)
                 reason = 'curl -XGET "$ElasticURL:9200/_cluster/allocation/explain?pretty"'
                 reasonPr = (os.popen(reason).read())
-                print(reasonPr)
+                #print(reasonPr)
                 uassignedshards = ('unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
                 uassignedshards = str(uassignedshards)
                 alerttext = alerttext + uassignedshards
@@ -75,6 +75,8 @@ def markerCheck():
     if len(alerttext) != 0:
         os.environ["ELKStatus"] = str(alerttext)
         subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
+        subprocess.call("unset ELKStatus", shell=True)
+        
 
 checkServerHealth(pingServer)
 checkServerHealth(uptimeServer)
