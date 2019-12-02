@@ -9,7 +9,7 @@ ramload = 'free -h'
 cpuload = 'vmstat 5 5'
 
 def checkServerHealth(param):
-        try
+        try:
                 signal.alarm(15)
                 result = (os.popen(param).read())
                 print(result)
