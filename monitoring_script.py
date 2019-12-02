@@ -74,7 +74,9 @@ def markerCheck():
             out_green(text)
     if len(alerttext) != 0:
         os.environ["ELKStatus"] = str(alerttext)
+        print("Отправка письма с уведомлением на почту")
         subprocess.call("/var/lib/jenkins/workspace/Ansible_Test_WithGit/sendemail.sh", shell=True)
+        print("Освобождаем переменную окружения")
         subprocess.call("unset ELKStatus", shell=True)
         
 
