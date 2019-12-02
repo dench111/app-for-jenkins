@@ -10,8 +10,8 @@ cpuload = 'vmstat 5 5'
 
 def checkServerHealth(param):
         result = (os.popen(param).read())
-        out_blue(result)
-        out_blue('============================================================================================================================')
+        print(result)
+        print('========================================================================================================================')
 
 
 
@@ -31,14 +31,6 @@ diskSpaceResponseAsDict = json.loads(diskSpaceResponse)
 diskSpaceResponseAsDict = diskSpaceResponseAsDict[0]
 diskSpace = diskSpaceResponseAsDict['disk.percent']
 markers = {'statusMarker': 0, 'unassignedMarker': 0, 'diskSpaceMarker': 0}
-
-
-def out_red(text):
-    print("\033[31m {}".format(text))
-def out_green(text):
-    print("\033[32m {}".format(text))
-def out_blue(text):
-    print("\033[36m {}".format(text))
 
 
 
@@ -91,7 +83,6 @@ def markerCheck():
         print("Освобождаем переменную окружения")
         subprocess.call("unset ELKStatus", shell=True)
         
-
 
 checkResponseStatus(elkRespAsDict, diskSpace)
 markerCheck()
