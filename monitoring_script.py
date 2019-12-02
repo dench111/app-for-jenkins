@@ -2,6 +2,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import json, sys, os, pprint, re, subprocess, io, platform, signal
+
+pingServer = 'ping -c 3 $ElasticURL'
+uptimeServer = 'uptime'
+ramload = 'free -h'
+cpuload = 'vmstat 5 5'
+checkServerHealth(pingServer)
+checkServerHealth(uptimeServer)
+checkServerHealth(ramload)
+checkServerHealth(cpuload)
 # *********Общий статус кластера********
 elkStatus = 'curl -XGET "http://$ElasticURL:9200/_cluster/health?pretty"'
 elkResponse = (os.popen(elkStatus).read())
@@ -14,10 +23,7 @@ diskSpaceResponseAsDict = json.loads(diskSpaceResponse)
 diskSpaceResponseAsDict = diskSpaceResponseAsDict[0]
 diskSpace = diskSpaceResponseAsDict['disk.percent']
 markers = {'statusMarker': 0, 'unassignedMarker': 0, 'diskSpaceMarker': 0}
-pingServer = 'ping -c 3 $ElasticURL'
-uptimeServer = 'uptime'
-ramload = 'free -h'
-cpuload = 'vmstat 5 5'
+
 
 def out_red(text):
     print("\033[31m {}".format(text))
@@ -86,9 +92,6 @@ def markerCheck():
         subprocess.call("unset ELKStatus", shell=True)
         
 
-checkServerHealth(pingServer)
-checkServerHealth(uptimeServer)
-checkServerHealth(ramload)
-checkServerHealth(cpuload)
+
 checkResponseStatus(elkRespAsDict, diskSpace)
 markerCheck()
