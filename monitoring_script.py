@@ -7,6 +7,18 @@ pingServer = 'ping -c 3 $ElasticURL'
 uptimeServer = 'uptime'
 ramload = 'free -h'
 cpuload = 'vmstat 5 5'
+
+def checkServerHealth(param):
+    try:
+        signal.alarm(15)
+        result = (os.popen(param).read())
+        out_blue(result)
+        out_blue('============================================================================================================================')
+        signal.alarm(0)
+    except TimeoutError:
+        print("за указанное время 15с не получен ответ от сервера")
+        sys.exit()
+
 checkServerHealth(pingServer)
 checkServerHealth(uptimeServer)
 checkServerHealth(ramload)
@@ -32,15 +44,7 @@ def out_green(text):
 def out_blue(text):
     print("\033[36m {}".format(text))
 
-def checkServerHealth(param):
-    try:
-        signal.alarm(15)
-        result = (os.popen(param).read())
-        out_blue(result)
-        out_blue('============================================================================================================================')
-        signal.alarm(0)
-    except TimeoutError:
-        print("за указанное время 15с не получен ответ от сервера")
+
 
 def checkResponseStatus(Resp, diskSpace):
     if Resp['status'] != 'green':
