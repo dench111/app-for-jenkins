@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-import json, sys, os, pprint, re, subprocess, io, platform
+import json, sys, os, pprint, re, subprocess, io, platform, signal
 # *********Общий статус кластера********
-elkStatus = 'curl -XGET "$ElasticURL:9200/_cluster/health?pretty"'
+elkStatus = 'curl -XGET "http://$ElasticURL:9200/_cluster/health?pretty"'
 elkResponse = (os.popen(elkStatus).read())
 elkRespAsDict = json.loads(elkResponse)
 print(elkResponse)
 # ********Проверка свободного пространства на дисках********
-diskSpaceStatus = 'curl -XGET "$ElasticURL:9200/_cat/allocation?format=json"'
+diskSpaceStatus = 'curl -XGET "http://$ElasticURL:9200/_cat/allocation?format=json"'
 diskSpaceResponse = (os.popen(diskSpaceStatus).read())
 diskSpaceResponseAsDict = json.loads(diskSpaceResponse)
 diskSpaceResponseAsDict = diskSpaceResponseAsDict[0]
 diskSpace = diskSpaceResponseAsDict['disk.percent']
 markers = {'statusMarker': 0, 'unassignedMarker': 0, 'diskSpaceMarker': 0}
-pingServer = 'ping -c 2 192.168.0.103'
+pingServer = 'ping -c 3 $ElasticURL'
 uptimeServer = 'uptime'
 ramload = 'free -h'
 cpuload = 'vmstat 5 5'
@@ -25,10 +25,16 @@ def out_green(text):
     print("\033[32m {}".format(text))
 def out_blue(text):
     print("\033[36m {}".format(text))
+
 def checkServerHealth(param):
-    result = (os.popen(param).read())
-    out_blue(result)
-    out_blue('============================================================================================================================')
+    try:
+        signal.alarm(15)
+        result = (os.popen(param).read())
+        out_blue(result)
+        out_blue('============================================================================================================================')
+        signal.alarm(0)
+    except TimeoutError:
+        print("за указанное время 15с не получен ответ от сервера")
 
 def checkResponseStatus(Resp, diskSpace):
     if Resp['status'] != 'green':
@@ -57,9 +63,9 @@ def markerCheck():
                 createFile = (os.popen('touch /var/lib/jenkins/workspace/Elastic_Notifier/testtest.txt').read())
                 viewDir = (os.popen('ls -la').read())
                 #print(viewDir)
-                unReq = 'curl -XGET "$ElasticURL:9200/_cat/shards?h=index,shard,prirep,state,unassigned.reason" | grep "UNASSIGNED" > /var/lib/jenkins/workspace/Elastic_Notifier/testtest.txt'
+                unReq = 'curl -XGET "http://$ElasticURL:9200/_cat/shards?h=index,shard,prirep,state,unassigned.reason" | grep "UNASSIGNED" > /var/lib/jenkins/workspace/Elastic_Notifier/testtest.txt'
                 os.system(unReq)
-                reason = 'curl -XGET "$ElasticURL:9200/_cluster/allocation/explain?pretty"'
+                reason = 'curl -XGET "http://$ElasticURL:9200/_cluster/allocation/explain?pretty"'
                 reasonPr = (os.popen(reason).read())
                 #print(reasonPr)
                 uassignedshards = ('unassigned_shards = ', + elkRespAsDict['unassigned_shards'])
