@@ -9,10 +9,15 @@ ramload = 'free -h'
 cpuload = 'vmstat 5 5'
 
 def checkServerHealth(param):
-        result = (os.popen(param).read())
-        print(result)
-        print('========================================================================================================================')
-
+        try
+                signal.alarm(15)
+                result = (os.popen(param).read())
+                print(result)
+                print('========================================================================================================================')
+                signal.alarm(0)
+        except TimeoutError:
+                print("За установленный промежуток времени сервер не ответил на запрос")
+        
 
 
 checkServerHealth(pingServer)
