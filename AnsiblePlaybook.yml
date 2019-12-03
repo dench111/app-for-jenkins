@@ -1,6 +1,7 @@
 ---
 
-- hosts: servers
+- hosts: 192.168.43.62
   gather_facts: false
   tasks:
-    - ping:
+    - name: ping host
+      command: ping 192.168.43.62
