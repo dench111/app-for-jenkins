@@ -1,8 +1,0 @@
----
-- name: SystemUpdate
-  hosts: host1
-  
-  tasks:
-  - name: UpdateSystem
-    shell: sudo apt update
-    register: Update_result
