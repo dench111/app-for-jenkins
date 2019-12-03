@@ -6,7 +6,7 @@ pipeline {
     }
   }
   stages {
-    stage("Start Playbook") {
+    stage("Start Ansible Playbook from Git") {
       steps {
         script {
           def workspace = "/var/lib/jenkins/workspace/Ansible_Git"
