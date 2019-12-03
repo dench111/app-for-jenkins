@@ -4,4 +4,4 @@
   gather_facts: false
   tasks:
     - name: ping host
-      command: ping 192.168.43.62
+    command: ping -c 3 192.168.43.62
