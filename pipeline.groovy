@@ -10,7 +10,7 @@ pipeline {
       steps {
         script {
           def workspace = "/var/lib/jenkins/workspace/Ansible_Git"
-          sh "chmod ugo+rwx $workspace/*"
+          sh "chmod ugo+rwx $workspace/* && PWD && ls -la"
           sh "$workspace/AnsiblePlaybook.yml"
         }
       }
