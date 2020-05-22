@@ -1,5 +1,5 @@
-- name: Clone a private repository into /opt.
-  git:
+#- name: Clone a private repository into /opt.
+- git:
     repo: git@github.com:dench111/rest-service.git
     version: master
     dest: /var/jenkins_home/workspace/Pipeline_Job
