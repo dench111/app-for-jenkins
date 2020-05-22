@@ -1,8 +1,4 @@
-#- name: Clone a private repository into /opt.
-- git:
-    repo: git@github.com:dench111/rest-service.git
-    version: master
-    dest: /opt/downloads
-    accept_hostkey: yes
-  # ssh-agent doesn't allow key to pass through remote sudo commands.
-  become: no
+- name: clone a private repository
+    git: >
+      repo=ssh://git@github.com:dench111/rest-service.git
+      dest=/opt/downloads
