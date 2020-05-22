@@ -1,5 +1,6 @@
 - hosts: localhost
   connection: local
+  gather_facts: false
   tasks:
     - name: App | Cloning repos + submodules
       git: repo=git@github.com:dench111/rest-service.git
