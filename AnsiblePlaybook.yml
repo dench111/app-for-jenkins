@@ -1,7 +1,9 @@
 ---
-
-- hosts: 192.168.0.1
-  gather_facts: false
+- hosts: servers
   tasks:
-    - name: ping host
-    command: ping -c 3 192.168.0.1
+    - name: Check free memory
+      command: free -h
+      register: result
+    - name: Print result
+      debug:
+        var: result.stdout_lines
