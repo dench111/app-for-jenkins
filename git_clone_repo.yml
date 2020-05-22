@@ -1,8 +1,9 @@
-- hosts: servers
+- hosts: localhost
+  connection: local
   tasks:
     - name: App | Cloning repos + submodules
       git: repo=git@github.com:dench111/rest-service.git
-           dest=/opt/downloads
+           dest=/var/jenkins_home/workspace/Pipeline_Job
            accept_hostkey=yes
            force=yes
            recursive=no
