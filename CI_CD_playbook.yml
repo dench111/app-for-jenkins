@@ -3,3 +3,7 @@
     - name: App | Cloning repos + submodules
       git: repo=git@github.com:dench111/rest-service.git
            dest=/opt/downloads
+           accept_hostkey=yes
+           force=yes
+           recursive=no
+           key_file=/home/root/.ssh/id_rsa.pub
