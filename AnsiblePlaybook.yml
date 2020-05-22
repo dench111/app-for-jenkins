@@ -1,7 +1,7 @@
 ---
 
-- hosts: 192.168.43.62
+- hosts: 192.168.0.1
   gather_facts: false
   tasks:
     - name: ping host
-    command: ping -c 3 192.168.43.62
+    command: ping -c 3 192.168.0.1
