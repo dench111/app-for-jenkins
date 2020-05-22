@@ -1,4 +1,4 @@
 - name: clone a private repository
-    git: >
+    git:
       repo=ssh://git@github.com:dench111/rest-service.git
       dest=/opt/downloads
