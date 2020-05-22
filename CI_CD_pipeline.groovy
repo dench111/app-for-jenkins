@@ -5,7 +5,7 @@ pipeline {
     }
   }
   stages {
-    stage("download application sources from git to /opt/downloads") {
+    stage("Download application sources from git to /opt/downloads") {
       steps {
         script {
           def workspace = "/var/jenkins_home/workspace/Pipeline_Job"
