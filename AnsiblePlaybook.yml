@@ -1,9 +1,9 @@
 ---
 - hosts: servers
   tasks:
-    - name: Check free memory
-      command: free -h
-      register: result
-    - name: Print result
-      debug:
-        var: result.stdout_lines
+  - name: Check free memory
+    command: free -h
+    register: result
+  - name: Print result
+    debug:
+      var: result.stdout_lines
