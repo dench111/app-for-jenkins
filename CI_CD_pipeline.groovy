@@ -23,7 +23,7 @@ pipeline {
       steps {
         script {
           sh "mvn -f /var/jenkins_home/workspace/sources/ clean package"
-          sh "ls -la /var/jenkins_home/workspace/sources/target/
+          sh "ls -la /var/jenkins_home/workspace/sources/target/"
         }
       }
     }
