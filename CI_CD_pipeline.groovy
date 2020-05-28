@@ -3,7 +3,7 @@ pipeline {
   agent {
     node {
       withCredentials([[$class: 'UsernamePassword', credentialsId: '6deb43b4-4f40-425b-813a-6a21dc4e7c05',
-      usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) 
+                        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
       label " "
       println(env.USERNAME)
       println(env.PASSWORD)
@@ -42,5 +42,5 @@ pipeline {
       }
     }
   }
+ }
 }
-
