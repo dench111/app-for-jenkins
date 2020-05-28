@@ -2,11 +2,7 @@
 pipeline {
   agent {
     node {
-      withCredentials([[$class: 'UsernamePassword', credentialsId: '6deb43b4-4f40-425b-813a-6a21dc4e7c05',
-                        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-      label "any"
-      println(env.USERNAME)
-      println(env.PASSWORD)
+      label " "
     }
   }
   stages {
@@ -27,6 +23,10 @@ pipeline {
         }
       }
     }
+    withCredentials([[$class: 'UsernamePassword', credentialsId: '6deb43b4-4f40-425b-813a-6a21dc4e7c05',
+                        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+      println(env.USERNAME)
+      println(env.PASSWORD)
     stage("Upload disrtibutiv to nexus") {
       steps {
         script {
