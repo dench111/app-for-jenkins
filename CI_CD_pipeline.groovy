@@ -1,3 +1,4 @@
+
 pipeline {
   agent {
     node {
@@ -18,6 +19,13 @@ pipeline {
       steps {
         script {
           sh "mvn -f /var/jenkins_home/workspace/sources/ clean package"
+        }
+      }
+    }
+    stage("Upload disrtibutiv to nexus") {
+      steps {
+        script {
+          sh "curl -v -u admin:admin123 --upload-file /var/jenkins_home/workspace/GitHub/target/*.jar http://192.168.0.84:8081/nexus/content/repositories/Testrep/rest-service-0.0.1-SNAPSHOT.jar"
         }
       }
     }
