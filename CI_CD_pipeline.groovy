@@ -24,8 +24,8 @@ pipeline {
     }
     stage("Upload disrtibutiv to nexus") {
       steps {
-       withCredentials([[$class: 'UsernamePassword', credentialsId: '6deb43b4-4f40-425b-813a-6a21dc4e7c05',
-                        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+       withCredentials([usernamePassword(credentialsId: '6deb43b4-4f40-425b-813a-6a21dc4e7c05',
+                        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
       println(env.USERNAME)
       println(env.PASSWORD)
         script {
