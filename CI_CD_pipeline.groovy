@@ -13,6 +13,13 @@ pipeline {
           sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/git_clone_repo.yml -vvv"
         }
       }
+    },
+    stage("Run build app with maven") {
+      steps {
+        script {
+          sh "mvn -f /var/jenkins_home/workspace/sources/ clean package"
+        }
+      }
     }
   }
 }
