@@ -1,31 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@dench111 
-dench111
-/
-app-for-jenkins
-1
-00
- Code
- Issues 0
- Pull requests 0 Actions
- Projects 0
- Wiki
- Security 0
- Insights
- Settings
-app-for-jenkins/CI_CD_pipeline.groovy
-@dench111 dench111 Update CI_CD_pipeline.groovy
-0933989 2 minutes ago
-46 lines (45 sloc)  1.3 KB
-  
-
 pipeline {
   agent {
     node {
