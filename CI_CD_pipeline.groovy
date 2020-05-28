@@ -26,8 +26,6 @@ pipeline {
       steps {
        withCredentials([usernamePassword(credentialsId: '6deb43b4-4f40-425b-813a-6a21dc4e7c05',
                         usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-      println(env.USERNAME)
-      println(env.PASSWORD)
         script {
           sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/*.jar http://192.168.0.84:8081/nexus/content/repositories/Testrep/rest-service-0.0.1-SNAPSHOT.jar"
         }
