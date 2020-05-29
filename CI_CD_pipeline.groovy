@@ -17,10 +17,8 @@ pipeline {
     stage("Run build app with maven") {
       steps {
         script {
-          sh "mvn -f /var/jenkins_home/workspace/sources/ clean package"
+          sh "mvn -f /var/jenkins_home/workspace/sources/ clean install"
           sh "ls -la /var/jenkins_home/workspace/sources/target/"
-          sh "sed -n '/<finalName>/,/</finalName>/p' /var/jenkins_home/workspace/sources/pom.xml > /var/jenkins_home/workspace/sources/test.txt"
-          sh "cat /var/jenkins_home/workspace/sources/test.txt"
         }
       }
     }
