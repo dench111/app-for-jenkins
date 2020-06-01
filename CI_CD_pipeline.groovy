@@ -21,7 +21,7 @@ pipeline {
     stage("Download application sources from git") {
       steps {
         script {
-          sh "chmod ugo+rwx $workspace/*"
+          sh "chmod +x $workspace/PomParser.py"
           sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/git_clone_repo.yml"
         }
       }
