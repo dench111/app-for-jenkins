@@ -1,4 +1,4 @@
-#! python2
+#! python3
 import os, re
 # open pom.xml file
 mypom = open('\\var\\jenkins_home\\workspace\\sources\\pom.xml')
