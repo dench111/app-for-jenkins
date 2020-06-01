@@ -9,7 +9,7 @@ pipeline {
     }
   }
   stages {
-    stage("Naming distr") {
+    stage("To Delete") {
       steps {
         script {
           sh "chmod ugo+rwx $workspace/scripts/*"
