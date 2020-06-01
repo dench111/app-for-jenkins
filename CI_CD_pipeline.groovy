@@ -25,6 +25,8 @@ pipeline {
     stage("Naming distr") {
       steps {
         script {
+          def workspace = "/var/jenkins_home/workspace/Pipeline_Job"
+          sh "chmod ugo+rwx $workspace/*"
           sh "/var/jenkins_home/workspace/Pipeline_Job/scripts/PomParser.py"
           sh "echo $FPname"
         }
