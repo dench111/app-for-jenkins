@@ -9,6 +9,15 @@ pipeline {
     }
   }
   stages {
+    stage("Naming distr") {
+      steps {
+        script {
+          sh "chmod ugo+rwx $workspace/scripts/*"
+          sh "/var/jenkins_home/workspace/Pipeline_Job/scripts/PomParser.py"
+          sh "echo $FPname"
+        }
+      }
+    }
     stage("Download application sources from git") {
       steps {
         script {
