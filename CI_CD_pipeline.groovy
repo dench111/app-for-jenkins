@@ -22,12 +22,21 @@ pipeline {
         }
       }
     }
+    stage("Naming distr") {
+      steps {
+        script {
+          sh "/var/jenkins_home/workspace/Pipeline_Job/scripts/PomParser.py"
+          sh "echo $FPname"
+          sh "ls -la /var/jenkins_home/workspace/sources/target/"
+        }
+      }
+    }
     stage("Upload disrtibutiv to nexus") {
       steps {
        withCredentials([usernamePassword(credentialsId: '6deb43b4-4f40-425b-813a-6a21dc4e7c05',
                         usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
         script {
-          sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/*.jar http://192.168.0.84:8081/nexus/content/repositories/Testrep/rest-service-0.0.1-SNAPSHOT.jar"
+          sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/*.jar http://192.168.0.84:8081/nexus/content/repositories/Testrep/$FPname.jar"
         }
       }
     }
@@ -41,4 +50,5 @@ pipeline {
     }
   }
  }
+
 
