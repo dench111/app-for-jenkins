@@ -1,7 +1,7 @@
 #! python
 import os, re
 # open pom.xml file
-mypom = open('E:\\FilesForPy\\pom.xml')
+mypom = open('\\var\\jenkins_home\\workspace\\sources\\pom.xml')
 mypomcontent = mypom.read()
 print(mypomcontent)
 # Try to find app name in pom.xml
