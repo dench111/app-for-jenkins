@@ -1,6 +1,5 @@
 #! groovy
 
-String FPname
 def workspace = "/var/jenkins_home/workspace/Pipeline_Job"
 
 pipeline {
