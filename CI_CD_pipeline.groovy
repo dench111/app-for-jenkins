@@ -39,7 +39,6 @@ pipeline {
        withCredentials([usernamePassword(credentialsId: '6deb43b4-4f40-425b-813a-6a21dc4e7c05',
                         usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
         script {
-          
           sh "echo $FPname"
           ext=".jar"
           sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/$FPname$ext http://192.168.0.84:8081/nexus/content/repositories/Testrep/$FPname$ext"
