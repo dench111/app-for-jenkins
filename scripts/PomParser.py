@@ -13,5 +13,5 @@ print(build_number)
 #rename app
 appName = mo.group(2)
 fullAppName = appName + '-' + str(build_number)
-print(fullAppName)
-os.environ["FPname"] = str(fullAppName)
+print fullAppName
+#os.environ["FPname"] = str(fullAppName)
