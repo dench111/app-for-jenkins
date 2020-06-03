@@ -42,7 +42,8 @@ pipeline {
         script {
           
           sh "echo $FPname"
-          sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/$FPname.jar http://192.168.0.84:8081/nexus/content/repositories/Testrep/$FPname.jar"
+          ext=".jar"
+          sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/$FPname$ext http://192.168.0.84:8081/nexus/content/repositories/Testrep/$FPname$ext"
         }
       }
     }
