@@ -6,6 +6,7 @@ def workspace = "/var/jenkins_home/workspace/Pipeline_Job"
 pipeline {
   agent {
     node {
+      String FPname
       label " "
     }
   }
