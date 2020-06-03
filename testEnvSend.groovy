@@ -15,9 +15,8 @@ pipeline {
         script {
           sh "chmod ugo+rwx $workspace/scripts/*"
           sh "/var/jenkins_home/workspace/SendEnv/scripts/envtest.py"
+          FPname=$(envtest.py)
           sh "echo $FPname"
-          sh "name = $FPname"
-          sh "echo $name"
         }
       }
     }
