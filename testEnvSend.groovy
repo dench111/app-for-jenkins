@@ -18,7 +18,6 @@ pipeline {
           sh "echo $FPname"
           sh "name = $FPname"
           sh "echo $name"
-          sh "echo ${env.FPname}"
         }
       }
     }
