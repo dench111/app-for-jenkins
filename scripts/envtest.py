@@ -5,3 +5,4 @@ build_number = 777
 fullAppName = appName + '-' + str(build_number)
 print(fullAppName)
 os.environ["FPname"] = str(fullAppName)
+print FPname
