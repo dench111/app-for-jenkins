@@ -1,11 +1,11 @@
 #! groovy
 
+String FPname
 def workspace = "/var/jenkins_home/workspace/Pipeline_Job"
 
 pipeline {
   agent {
     node {
-      String FPname
       label " "
     }
   }
@@ -30,7 +30,7 @@ pipeline {
         script {
           sh "chmod ugo+rwx $workspace/scripts/*"
           sh "/var/jenkins_home/workspace/Pipeline_Job/scripts/PomParser.py"
-          sh "echo ${FPname}"
+          sh "echo ${env.FPname}"
         }
       }
     }
