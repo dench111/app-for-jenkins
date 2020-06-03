@@ -11,6 +11,6 @@ print('FP_NAME: ' + mo.group(2))
 print('$BUILD_NUMBER')
 #rename app
 appName = mo.group(2)
-fullAppName = appName + '-' + str($BUILD_NUMBER)
+fullAppName = appName + '-' + str('$BUILD_NUMBER')
 print(fullAppName)
 os.environ["FPname"] = str(fullAppName)
