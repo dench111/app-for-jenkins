@@ -9,6 +9,7 @@ pipeline {
       label " "
     }
   }
+  stages{
     stage("Get Python env") {
       steps {
         script {
@@ -22,3 +23,4 @@ pipeline {
       }
     }
   }
+}
