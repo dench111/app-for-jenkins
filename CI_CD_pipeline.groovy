@@ -10,19 +10,9 @@ pipeline {
     }
   }
   stages {
-    stage("To Delete") {
-      steps {
-        script {
-          sh "chmod ugo+rwx $workspace/scripts/*"
-          sh "/var/jenkins_home/workspace/Pipeline_Job/scripts/PomParser.py"
-          sh "echo $FPname"
-        }
-      }
-    }
     stage("Download application sources from git") {
       steps {
         script {
-          sh "chmod +x $workspace/PomParser.py"
           sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/git_clone_repo.yml"
         }
       }
@@ -38,7 +28,7 @@ pipeline {
     stage("Naming distr") {
       steps {
         script {
-          sh "chmod ugo+rwx $workspace/*"
+          sh "chmod ugo+rwx $workspace/scripts/*"
           sh "/var/jenkins_home/workspace/Pipeline_Job/scripts/PomParser.py"
           sh "echo $FPname"
         }
