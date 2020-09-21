@@ -16,6 +16,13 @@ pipeline {
         }
       }
     }
+    stage("Run build docker image") {
+      steps {
+        script {
+          sh "docker build -t myorg/myapp --file /var/jenkins_home/workspace/sources/Dockerfile"
+        }
+      }
+    }
     stage("Run build app with maven") {
       steps {
         script {
