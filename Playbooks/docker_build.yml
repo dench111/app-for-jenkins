@@ -2,13 +2,20 @@
 - hosts: servers
   gather_facts: false
   tasks:
-    - name: App | Cloning repos + submodules
+    - name: App | Cloning app sources
       git: repo=git@github.com:dench111/rest-service.git
            dest=/tmp/workspace/sources/
            accept_hostkey=yes
            force=yes
            recursive=no
            key_file=/home/root/.ssh/id_rsa.pub
+    - name: Cloning config files
+      git: repo=git@github.com:dench111/app-for-jenkins.git
+           dest=/tmp/workspace/configs/
+           accept_hostkey=yes
+           force=yes
+           recursive=no
+           key_file=/home/root/.ssh/id_rsa.pub
     - name: check workspace dir
       shell:
-        cmd: docker build --tag testimage:v1 /tmp/workspace/sources/Dockerfile
+        cmd: docker build --tag testimage:v1 /tmp/workspace/configs/Dockerfile
