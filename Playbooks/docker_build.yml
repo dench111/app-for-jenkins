@@ -8,7 +8,7 @@
         repository_url: 'http://192.168.0.84:8081/nexus/content/'
         username: admin
         password: admin123
-        dest: /tmp/workspace/sources/
+        dest: /tmp/workspace/sources/MySpringBootTestApp-72.jar
     - name: App | Cloning app sources
       git: repo=git@github.com:dench111/rest-service.git
            dest=/tmp/workspace/sources/
