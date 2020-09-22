@@ -2,6 +2,13 @@
 - hosts: servers
   gather_facts: false
   tasks:
+    - maven_artifact:
+        group_id: public
+        artifact_id: Testrep
+        repository_url: 'http://192.168.0.84:8081/nexus/content/repositories/Testrep/'
+        username: admin
+        password: admin123
+        dest: /tmp/workspace/sources/
     - name: App | Cloning app sources
       git: repo=git@github.com:dench111/rest-service.git
            dest=/tmp/workspace/sources/
