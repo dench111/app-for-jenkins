@@ -1,6 +1,5 @@
   
 - hosts: servers
-  connection: local
   gather_facts: false
   tasks:
     - name: App | Cloning repos + submodules
