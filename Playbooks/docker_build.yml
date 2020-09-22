@@ -16,6 +16,6 @@
            force=yes
            recursive=no
            key_file=/home/root/.ssh/id_rsa.pub
-    - name: check workspace dir
+    - name: Build docker image
       shell:
-        cmd: docker build --tag testimage:v1 /tmp/workspace/configs/Dockerfile
+        cmd: docker build --tag testimage:v1 /tmp/workspace/configs/
