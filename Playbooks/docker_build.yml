@@ -14,9 +14,8 @@
       shell:
         cmd: ls -l /tmp/workspace/sources/
     - name: build container image
-      docker_image:
-        name: democontainer:v1.0
-        build:
-          path: /tmp/workspace/sources/Dockerfile
-          source: build
+      docker_image: >
+        name=democontainer
+        tag=v1
+        path=/tmp/workspace/sources/Dockerfile
         state: present
