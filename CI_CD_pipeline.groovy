@@ -10,11 +10,12 @@ pipeline {
   }
   stages {
   //выкачиваем исходники приложения на слейв jenkins
-    stage("Download application sources from git") {
+    stage("Clone sources") {
       steps {
         script {
+          git url 'https://github.com/dench111/rest-service.git'
           //sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/docker_build.yml"
-          sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/git_clone_repo.yml"
+          //sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/git_clone_repo.yml"
         }
       }
     }
