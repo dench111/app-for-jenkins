@@ -24,7 +24,7 @@ pipeline {
     stage("Run build app with maven") {
       steps {
         script {
-          sh "mvn -f /var/jenkins_home/workspace/sources/ clean install -Dmaven.test.skip=true"
+          sh "mvn -f /var/jenkins_home/workspace/sources/ clean deploy -Dmaven.test.skip=true"
           sh "ls -la /var/jenkins_home/workspace/sources/target/"
         }
       }
