@@ -13,7 +13,7 @@ pipeline {
     stage("Download application sources from git") {
       steps {
         script {
-          sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/docker_build.yml"
+          //sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/docker_build.yml"
           sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/git_clone_repo.yml"
         }
       }
@@ -44,7 +44,8 @@ pipeline {
     stage("Clean source dir") {
       steps {
         script {
-          sh "rm -rf /var/jenkins_home/workspace/sources/*"
+         sh "echo The End"
+          //sh "rm -rf /var/jenkins_home/workspace/sources/*"
         }
       }
     }
