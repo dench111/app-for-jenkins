@@ -13,9 +13,10 @@ pipeline {
     stage("Clone sources") {
       steps {
         script {
-          sh "rm -rf /var/jenkins_home/workspace/sources/* && ls /var/jenkins_home/workspace/sources/"
-          git branch: 'feature/mvn_deploy', credentialsId: 'fd7c264a-d14f-4d9f-94b6-ce610eb4ccbc', url: 'https://github.com/dench111/rest-service.git'
-          git branch: 'feature/docker', credentialsId: 'fd7c264a-d14f-4d9f-94b6-ce610eb4ccbc', url: 'https://github.com/dench111/app-for-jenkins.git'
+          sh "rm -rf /var/jenkins_home/workspace/*"
+          //git branch: 'feature/mvn_deploy', credentialsId: 'fd7c264a-d14f-4d9f-94b6-ce610eb4ccbc', url: 'https://github.com/dench111/rest-service.git'
+          //git branch: 'feature/docker', credentialsId: 'fd7c264a-d14f-4d9f-94b6-ce610eb4ccbc', url: 'https://github.com/dench111/app-for-jenkins.git'
+          sh "pwd && git clone https://github.com/dench111/rest-service.git && git checkout feature/mvn_deploy"
         }
       }
     }
