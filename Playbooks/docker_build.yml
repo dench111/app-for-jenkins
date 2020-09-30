@@ -5,7 +5,7 @@
     - maven_artifact:
         group_id: repositories
         artifact_id: Testrep
-        repository_url: 'http://192.168.0.84:8081/nexus/content/'
+        repository_url: 'http://192.168.0.84:8081/nexus/service/local/repositories/Testrep/content/'
         username: admin
         password: admin123
         dest: /tmp/workspace/sources/MySpringBootTestApp-72.jar
