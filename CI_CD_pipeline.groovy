@@ -9,6 +9,7 @@ pipeline {
     }
   }
   stages {
+  //выкачиваем исходники приложения на слейв jenkins
     stage("Download application sources from git") {
       steps {
         script {
@@ -18,13 +19,7 @@ pipeline {
         }
       }
     }
-    stage("Run build docker image") {
-      steps {
-        script {
-          sh "docker build -t myorg/myapp --file /var/jenkins_home/workspace/sources/Dockerfile"
-        }
-      }
-    }
+  //Собираем из исходников jar
     stage("Run build app with maven") {
       steps {
         script {
@@ -33,6 +28,7 @@ pipeline {
         }
       }
     }
+  //Нумеруем артефакт и выгружаем его в нексус
     stage("Rename and Upload disrtibutiv to nexus") {
       steps {
        withCredentials([usernamePassword(credentialsId: '6deb43b4-4f40-425b-813a-6a21dc4e7c05',
@@ -40,11 +36,12 @@ pipeline {
         script {
           sh "chmod ugo+rwx $workspace/scripts/*"
           sh "/var/jenkins_home/workspace/Pipeline_Job/scripts/PomParser.py"
-          //sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/$FPname$ext http://192.168.0.84:8081/nexus/content/repositories/Testrep/$FPname$ext"
+          sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/$FPname$ext http://192.168.0.84:8081/nexus/content/repositories/Testrep/$FPname$ext"
         }
       }
     }
    }
+  //Очищаем директорию на сборщике
     stage("Clean source dir") {
       steps {
         script {
