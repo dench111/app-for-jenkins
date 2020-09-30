@@ -14,9 +14,7 @@ pipeline {
       steps {
         script {
           git branch: 'feature/mvn_deploy', credentialsId: 'fd7c264a-d14f-4d9f-94b6-ce610eb4ccbc', url: 'https://github.com/dench111/rest-service.git'
-          git url: 'https://github.com/dench111/app-for-jenkins.git'
-          //sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/docker_build.yml"
-          //sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/git_clone_repo.yml"
+          git branch: 'feature/docker', credentialsId: 'fd7c264a-d14f-4d9f-94b6-ce610eb4ccbc', url: 'https://github.com/dench111/app-for-jenkins.git'
         }
       }
     }
@@ -36,8 +34,7 @@ pipeline {
                         usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
         script {
           sh "chmod ugo+rwx $workspace/scripts/*"
-          sh "/var/jenkins_home/workspace/Pipeline_Job/scripts/PomParser.py"
-          //sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/$FPname$ext http://192.168.0.84:8081/nexus/content/repositories/Testrep/$FPname$ext"
+          //sh "/var/jenkins_home/workspace/Pipeline_Job/scripts/PomParser.py"
         }
       }
     }
@@ -46,7 +43,6 @@ pipeline {
     stage("Clean source dir") {
       steps {
         script {
-         sh "echo The End"
           sh "rm -rf /var/jenkins_home/workspace/sources/*"
         }
       }
