@@ -13,7 +13,7 @@ pipeline {
     stage("Clone sources") {
       steps {
         script {
-          git url: 'https://github.com/dench111/rest-service.git'
+          git branch: 'feature/mvn_deploy', credentialsId: 'fd7c264a-d14f-4d9f-94b6-ce610eb4ccbc', url: 'https://github.com/dench111/rest-service.git'
           git url: 'https://github.com/dench111/app-for-jenkins.git'
           //sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/docker_build.yml"
           //sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/git_clone_repo.yml"
@@ -47,7 +47,7 @@ pipeline {
       steps {
         script {
          sh "echo The End"
-          //sh "rm -rf /var/jenkins_home/workspace/sources/*"
+          sh "rm -rf /var/jenkins_home/workspace/sources/*"
         }
       }
     }
