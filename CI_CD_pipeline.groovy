@@ -37,7 +37,7 @@ pipeline {
         script {
           sh "chmod ugo+rwx $workspace/scripts/*"
           sh "/var/jenkins_home/workspace/Pipeline_Job/scripts/PomParser.py"
-          sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/$FPname$ext http://192.168.0.84:8081/nexus/content/repositories/Testrep/$FPname$ext"
+          //sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/sources/target/$FPname$ext http://192.168.0.84:8081/nexus/content/repositories/Testrep/$FPname$ext"
         }
       }
     }
