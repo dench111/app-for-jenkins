@@ -43,7 +43,7 @@ pipeline {
     stage("Clean source dir") {
       steps {
         script {
-          sh "rm -rf /var/jenkins_home/workspace/sources/*"
+          sh "rm -rf /var/jenkins_home/workspace/sources/* && ls /var/jenkins_home/workspace/"
         }
       }
     }
