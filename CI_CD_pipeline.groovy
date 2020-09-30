@@ -13,7 +13,6 @@ pipeline {
     stage("Download application sources from git") {
       steps {
         script {
-          sh "ansible servers -m ping"
           sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/docker_build.yml"
           sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/git_clone_repo.yml"
         }
