@@ -13,7 +13,7 @@ pipeline {
     stage("Clone sources") {
       steps {
         script {
-          git url 'https://github.com/dench111/rest-service.git'
+          git url: 'https://github.com/dench111/rest-service.git'
           //sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/docker_build.yml"
           //sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Playbooks/git_clone_repo.yml"
         }
