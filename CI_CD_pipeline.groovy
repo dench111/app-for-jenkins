@@ -44,9 +44,10 @@ pipeline {
       }
     }
    }
+   }
     post {
         always {
-            echo 'One way or another, I have finished'
+            echo 'Clean dir'
             deleteDir() /* clean up our workspace */
         }
     }
