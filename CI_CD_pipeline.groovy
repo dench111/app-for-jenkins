@@ -1,6 +1,7 @@
 #! groovy
 
 def workspace = "/var/jenkins_home/workspace/Pipeline_Job"
+def scriptworkspace = "/var/jenkins_home/workspace/Pipeline_Job@script"
 
 pipeline {
   agent {
@@ -38,7 +39,7 @@ pipeline {
                         usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
         script {
           sh "chmod ugo+rwx $workspace/Pipeline_Job@script/*"
-          sh "/var/jenkins_home/workspace/Pipeline_Job@script/scriptsPomParser.py"
+          sh "$scriptworkspace/scripts/PomParser.py"
           //sh "curl -v -u $USERNAME:$PASSWORD --upload-file /var/jenkins_home/workspace/Pipeline_Job/target/$FPname$ext http://192.168.0.84:8081/nexus/content/repositories/Testrep/$FPname$ext"
         }
       }
