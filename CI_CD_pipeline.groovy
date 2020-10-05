@@ -43,15 +43,15 @@ pipeline {
         }
       }
     }
-	stage("Build Docker image") {
+   }
+    stage("Build Docker image") {
       steps {
         script {
           sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Pipeline_Job/Playbooks/docker_build.yml"
         }
       }
     }
-   }
-   }
+  }
     post {
         always {
             echo 'Clean dir'
