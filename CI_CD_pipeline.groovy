@@ -1,6 +1,6 @@
 #! groovy
 
-def workspace = "/var/jenkins_home/workspace/"
+def workspace = "/var/jenkins_home/workspace"
 
 pipeline {
   agent {
