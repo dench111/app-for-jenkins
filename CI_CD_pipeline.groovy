@@ -55,7 +55,7 @@ pipeline {
     post {
         always {
             echo 'Clean dir'
-            deleteDir() /* clean up our workspace */
+            //deleteDir() /* clean up our workspace */
         }
     }
 }
