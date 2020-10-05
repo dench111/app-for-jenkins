@@ -47,7 +47,7 @@ pipeline {
     stage("Build Docker image") {
       steps {
         script {
-          sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Pipeline_Job/Playbooks/docker_build.yml"
+          sh "ansible-playbook -i " + "inventory" + " " + "$workspace/Pipeline_Job@script/Playbooks/docker_build.yml"
         }
       }
     }
