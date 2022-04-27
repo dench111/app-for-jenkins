@@ -1,8 +1,8 @@
 alert=$ELKStatus
 # Будет отображаться "От кого"
-FROM="denisnaprimerov05927@gmail.com"
+FROM=""
 # Кому
-MAILTO="banzau007@mail.ru"
+MAILTO=""
 # Тема письма
 NAME="отчет о состоянии сервера elasticsearch"
 # Тело письма
