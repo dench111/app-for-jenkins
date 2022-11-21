@@ -1,8 +1,8 @@
-import os
+import os, re
 from minio import Minio
 from minio.error import S3Error
 
-rootdir = 'C:/Work/minio_tmp'
+rootdir = 'C:/Work/minio'
 all_count = 0
 empty_count = 0
 for root, dirs, files in os.walk(rootdir):
@@ -18,11 +18,23 @@ for root, dirs, files in os.walk(rootdir):
                            secure=False)
             for filename in files:
                 filepath = f'{rootdir}/{dir}/{filename}'
-                try:
-                    result = client.fput_object(dir, filename, filepath)
-                    print("created {0} object;etag: {1}, version-id: {2}".format(result.object_name, result.etag, result.version_id))
-                except ResponseError as err:
-                    print(err)
+                found = client.bucket_exists(dir)
+                if not found:
+                    client.make_bucket(dir)
+                    try:
+                        result = client.fput_object(dir, filename, filepath)
+                        print("created {0} object;etag: {1}, version-id: {2}".format(result.object_name, result.etag,
+                                                                                     result.version_id))
+                    except ResponseError as err:
+                        print(err)
+                else:
+                    print('Bucket ' + dir + ' уже существует, будет выполнена повторная загрузка/обновление данных')
+                    try:
+                        result = client.fput_object(dir, filename, filepath)
+                        print("created {0} object;etag: {1}, version-id: {2}".format(result.object_name, result.etag,
+                                                                                     result.version_id))
+                    except ResponseError as err:
+                        print(err)
         else:
             print('Bucket ' + dir + ' пустой и не будет загружен в minio')
             empty_count = empty_count + 1
